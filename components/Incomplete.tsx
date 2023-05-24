@@ -38,7 +38,7 @@ export default function Incomplete() {
   }
 
   return (
-    <View>
+    <>
       <View>
         <Text style={styles.incomplete}>Incomplete</Text>
       </View>
@@ -47,7 +47,7 @@ export default function Incomplete() {
         renderItem={renderItem}
         style={{ height: 250 }}
       />
-    </View>
+    </>
   )
 }
 

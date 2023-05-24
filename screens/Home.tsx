@@ -7,7 +7,7 @@ import FooterBottom from '../components/FooterBottom';
 
 export default function Home() {
     return (
-        <View style={{ flex: 1, backgroundColor: 'black', paddingHorizontal: 16, paddingTop: 25 }}>
+        <View style={styles.container}>
 
             <Header />
             <View style={styles.divider} />
@@ -20,6 +20,12 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: 'black',
+        paddingHorizontal: 16,
+        paddingTop: 25
+    },
     divider: {
         orderBottomWidth: 0.5,
         borderColor: '#cacaca',

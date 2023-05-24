@@ -13,6 +13,7 @@ export default function Header() {
 
         const falseFilter = todos.filter(e => e.status == false)
         setincomplete(falseFilter.length)
+        
         const trueFilter = todos.filter(e => e.status == true)
         setcomplete(trueFilter.length)
 
