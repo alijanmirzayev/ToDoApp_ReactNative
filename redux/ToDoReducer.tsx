@@ -1,6 +1,5 @@
 export const ToDoReducer = (state: any = [], action: any) => {
 
-    console.log('ToDoReducer Action.Payload', action.payload)
 
     switch (action.type) {
         case 'ADD':

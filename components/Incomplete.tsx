@@ -1,18 +1,20 @@
-import { View, Text, ScrollView, StyleSheet, FlatList } from 'react-native'
-import React, { useEffect, useState } from 'react'
 import CheckBox from '@react-native-community/checkbox'
+import React, { useEffect, useState } from 'react'
+import { FlatList, StyleSheet, Text, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
+import { StateType } from '../redux'
+import { add, status_change, todosInterface } from '../redux/todo/TodoSlice'
 
 export default function Incomplete() {
 
   let dispatch = useDispatch()
-  const data = useSelector(state => state)
-  const [statusTrueData, setStatusTrueData] = useState([])
+  const { error, status, todos } = useSelector((state: StateType) => state.todo)
+  const [statusTrueData, setStatusTrueData] = useState<Array<todosInterface>>([])
 
   useEffect(() => {
-      const statusTrueData = data?.filter((e: any) => e.status == false)
-      setStatusTrueData(statusTrueData)
-  }, [data])
+    const statusTrueDatas = todos.filter((e: any) => e.status == false)
+    setStatusTrueData(statusTrueDatas)
+  }, [todos])
 
   const handleTask = (item: any) => {
     let newItem = {
@@ -20,7 +22,7 @@ export default function Incomplete() {
       text: item.text,
       status: true
     }
-    dispatch({ type: 'STATUS_CHANGE', payload: newItem })
+    dispatch(status_change(newItem))
   }
 
   const renderItem = ({ item }: any) => {

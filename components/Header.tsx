@@ -1,26 +1,28 @@
-import { View, Text, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { StyleSheet, Text, View } from 'react-native'
+import { useSelector } from 'react-redux'
+import { StateType } from '../redux'
+import moment from 'moment'
 
 export default function Header() {
-    const data = useSelector(state => state)
+    const { error, status, todos } = useSelector((state: StateType) => state.todo)
     const [incomplete, setincomplete] = useState(0)
     const [complete, setcomplete] = useState(0)
 
     useEffect(() => {
-        if (data) {
-            const falseFilter = data.filter(e => e.status == false)
-            setincomplete(falseFilter.length)
-            const trueFilter = data.filter(e => e.status == true)
-            setcomplete(trueFilter.length)
-        }
-    }, [data])
+
+        const falseFilter = todos.filter(e => e.status == false)
+        setincomplete(falseFilter.length)
+        const trueFilter = todos.filter(e => e.status == true)
+        setcomplete(trueFilter.length)
+
+    }, [todos])
 
     return (
 
         <View style={styles.container}>
             <View>
-                <Text style={styles.date}>March 9, 2023</Text>
+                <Text style={styles.date}>{moment().format("MMM Do YYYY")}</Text>
             </View>
             <View>
                 <Text style={styles.total}>{incomplete} incomplete, {complete} completed</Text>

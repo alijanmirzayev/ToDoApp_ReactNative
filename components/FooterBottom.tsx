@@ -1,6 +1,7 @@
-import { View, Text, StyleSheet, TouchableOpacity, Modal, TextInput } from 'react-native'
-import React, { useState } from 'react'
-import { useDispatch} from 'react-redux'
+import React, { useState } from 'react';
+import { Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { add } from '../redux/todo/TodoSlice';
 
 export default function FooterBottom() {
 
@@ -24,10 +25,8 @@ export default function FooterBottom() {
             text: taskText,
             status: false
         }
-        dispatch({type: 'ADD', payload: item})
-        console.log('Task Save:', taskText);
+        dispatch(add(item))
 
-        // Modalı kapatın ve TextInput alanını temizleyin
         setModalVisible(false);
         setTaskText('');
     };
@@ -107,15 +106,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      },
-      contentContainer: {
+    },
+    contentContainer: {
         width: '80%',
         height: 300,
         backgroundColor: 'white',
         borderRadius: 8,
         padding: 16,
-      },
-      closeButton: {
+    },
+    closeButton: {
         position: 'absolute',
         top: -20,
         right: -10,
@@ -125,12 +124,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'gray',
         justifyContent: 'center',
         alignItems: 'center',
-      },
-      closeButtonText: {
+    },
+    closeButtonText: {
         color: 'white',
         fontSize: 18,
-      },
-      input: {
+    },
+    input: {
         flex: 1,
         marginBottom: 16,
         borderWidth: 1,
@@ -138,16 +137,16 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         paddingHorizontal: 10,
         color: 'black'
-      },
-      submitButton: {
+    },
+    submitButton: {
         backgroundColor: 'blue',
         paddingVertical: 10,
         borderRadius: 4,
         justifyContent: 'center',
         alignItems: 'center',
-      },
-      submitButtonText: {
+    },
+    submitButtonText: {
         color: 'white',
         fontSize: 16,
-      },
+    },
 })
